@@ -1,9 +1,21 @@
-import Image from "next/image";
+
+import About from "@/components/About"
+import FeaturedHotels from "@/components/FeaturedHotels"
+import Hero from "@/components/Hero"
+import Testimonials from "@/components/Testimonials"
 
 export default function Home() {
   return (
-    <main>
-      <h1 className="text-6xl text-center text-purple-600 font-semibold">Hotelia</h1>
-    </main>
-  );
+    <div>
+      {/* Hero Section */}
+      <Hero/>
+      {/* Featured Hotels Section */}
+      <FeaturedHotels />
+      {/* About Section */}
+      <About/>
+      {/* Testimonial Section */}
+      <Testimonials/>
+    </div>
+  )
 }
+
