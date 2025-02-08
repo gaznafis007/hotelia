@@ -17,7 +17,7 @@ const About = () => {
               />
             </div>
             <div className="md:w-1/2 md:pl-8">
-              <h2 className="text-3xl font-bold mb-4">About Hotelia</h2>
+              <h2 className="text-3xl font-bold mb-4 text-slate-800">About Hotelia</h2>
               <p className="text-gray-600 mb-4">
                 Hotelia is your premier destination for finding the perfect hotel for your next adventure. We curate a
                 selection of the finest accommodations around the world, ensuring that your stay is nothing short of

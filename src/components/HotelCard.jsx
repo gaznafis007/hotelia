@@ -1,3 +1,4 @@
+'use client'
 import Link from "next/link"
 import Image from "next/image"
 import { FacebookShareButton, TwitterShareButton, WhatsappShareButton } from "react-share"
@@ -16,13 +17,13 @@ export default function HotelCard({ hotel }) {
         className="w-full h-48 object-cover"
       />
       <div className="p-4">
-        <h2 className="text-xl font-semibold mb-2">{hotel.name}</h2>
+        <h2 className="text-xl font-semibold mb-2 text-slate-800">{hotel.name}</h2>
         <p className="text-gray-600 mb-2">{hotel.address}</p>
-        <p className="text-lg font-bold mb-2">${hotel.price} / night</p>
-        <p className="text-sm mb-2">Available Rooms: {hotel.availableRooms}</p>
+        <p className="text-lg font-bold mb-2 text-slate-800">${hotel.price} / night</p>
+        <p className="text-sm mb-2 text-slate-800">Available Rooms: {hotel.availableRooms}</p>
         <div className="flex items-center mb-4">
           <span className="text-yellow-500 mr-1">★</span>
-          <span>{hotel.rating.toFixed(1)}</span>
+          <span className="text-slate-800">{hotel.rating.toFixed(1)}</span>
         </div>
         <Link href={`/hotels/${hotel.id}`} className="block text-center bg-blue-600 text-white py-2 rounded mb-2">
           View Details
