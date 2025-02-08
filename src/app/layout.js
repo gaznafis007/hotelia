@@ -1,29 +1,28 @@
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
+import AuthProvider from "@/components/AuthProvider"
+import "./globals.css"
+import { Inter } from "next/font/google"
+import Navbar from "@/components/Navbar"
+import Footer from "@/components/Footer"
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+const inter = Inter({ subsets: ["latin"] })
 
 export const metadata = {
   title: "Hotelia",
-  description: "A hotel web application",
-};
+  description: "Hotel Management Application",
+}
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+      <body className={inter.className}>
+        <AuthProvider>
+          <Navbar />
+          <main className="container mx-auto px-4 py-8">{children}</main>
+          <Footer />
+        </AuthProvider>
       </body>
     </html>
-  );
+  )
 }
+
