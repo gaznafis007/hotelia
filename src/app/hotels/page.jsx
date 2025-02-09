@@ -1,3 +1,4 @@
+'use client';
 import HotelCard from "@/components/HotelCard"
 import Pagination from "@/components/Pagination"
 import Button from "@/components/ui/Button"
