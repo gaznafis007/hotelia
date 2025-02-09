@@ -8,10 +8,13 @@ export default function Register() {
   const router = useRouter()
 
   const onSubmit = async (data) => {
+    const user = {
+        ...data
+    }
     const response = await fetch("/api/auth/register", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
+      body: JSON.stringify(user),
     })
     const res = await response.json()
     if (response.ok) {
