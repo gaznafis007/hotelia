@@ -42,6 +42,7 @@ export const PUT = async (req,{params}) =>{
         const result = await hotelCollection.updateOne(query, updatedDoc);
         return NextResponse.json(result)
     }catch(err){
+        console.log(err)
         return NextResponse.json({error: err.message}, {status: 500})
     }
 }

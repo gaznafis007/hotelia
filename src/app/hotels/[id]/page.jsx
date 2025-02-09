@@ -2,12 +2,11 @@
 import Image from "next/image"
 import Link from "next/link"
 import { notFound } from "next/navigation"
-import { Star, ArrowLeft, Wifi, Car, Utensils, Dumbbell } from "lucide-react"
-import { hotels } from "@/constants/constants"
+import { Star, ArrowLeft, Wifi, Car, Utensils, Dumbbell, WavesLadder, BrainCog } from "lucide-react"
 import Button from "@/components/ui/Button"
 
  const HotelDetail = async ({ params }) =>{
-    const {id} =  params
+    const {id} =  await params
   const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/hotels/${id}`);
   const hotel = await res.json()
 
@@ -42,6 +41,8 @@ import Button from "@/components/ui/Button"
                   {amenity === "Parking" && <Car className="w-4 h-4 mr-2" />}
                   {amenity === "Restaurant" && <Utensils className="w-4 h-4 mr-2" />}
                   {amenity === "Fitness Center" && <Dumbbell className="w-4 h-4 mr-2" />}
+                  {amenity === "Swimming Pool" && <WavesLadder className="w-4 h-4 mr-2"/>}
+                  {amenity === "Spa" && <BrainCog className="w-4 h-4 mr-2"/>}
                   <span>{amenity}</span>
                 </div>
               ))}

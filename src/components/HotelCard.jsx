@@ -23,7 +23,7 @@ export default function HotelCard({ hotel }) {
         <p className="text-sm mb-2 text-slate-800">Available Rooms: {hotel.availableRooms}</p>
         <div className="flex items-center mb-4">
           <span className="text-yellow-500 mr-1">★</span>
-          <span className="text-slate-800">{hotel.rating.toFixed(1)}</span>
+          <span className="text-slate-800">{hotel?.rating}</span>
         </div>
         <Link href={`/hotels/${hotel._id}`} className="block text-center bg-blue-600 text-white py-2 rounded mb-2">
           View Details

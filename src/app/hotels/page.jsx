@@ -2,7 +2,10 @@
 import HotelCard from "@/components/HotelCard"
 import Pagination from "@/components/Pagination"
 import Button from "@/components/ui/Button"
+import { useSession } from "next-auth/react";
 import Link from "next/link"
+import { useRouter } from "next/navigation";
+
 import { useEffect, useState } from "react";
 
 
@@ -12,6 +15,8 @@ const Hotels = () =>{
   const [totalPages, setTotalPages] = useState(0)
   const [page, setPage] = useState(1)
   const [error, setError] = useState(null);
+  const {data:session, status} = useSession()
+  const router = useRouter()
   const fetchHotels = async () =>{
     setLoading(true)
     try{
@@ -40,7 +45,10 @@ if(loading){
       </div>
     )
   }
-
+  if (!session) {
+    router.push("/auth/login"); // Redirect to login page if not authenticated
+    return null; // Return null to avoid rendering the page before redirect
+  }
   return (
     <div>
       <h1 className="text-3xl font-bold mb-6 text-slate-800">Hotels</h1>

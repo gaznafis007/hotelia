@@ -64,7 +64,7 @@ export default function ManageHotels() {
       <h1 className="text-3xl font-bold mb-6 text-slate-800">Manage Hotels</h1>
       <div className="mb-4">
         <Link href="/hotels/create" passHref>
-          <Button>Add New Hotel</Button>
+          <Button className={'bg-green-500'}>Add New Hotel</Button>
         </Link>
       </div>
       <div className="overflow-x-auto">
