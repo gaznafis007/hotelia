@@ -2,25 +2,35 @@
 import HotelCard from "@/components/HotelCard"
 import Pagination from "@/components/Pagination"
 import Button from "@/components/ui/Button"
-import { getHotels } from "@/libs/getHotels"
 import Link from "next/link"
+import { useEffect, useState } from "react";
 
 
-const Hotels = async({ searchParams }) =>{
-  const page = Number.parseInt(searchParams?.page ?? 1)
-  let hotels = []
-  let totalPages = 0
-  let error = null
-
-  try {
-    const result = await getHotels(page)
-    hotels = result.hotels
-    totalPages = result.totalPages
-  } catch (e) {
-    console.error("Error in Hotels page:", e)
-    error = e.message
+const Hotels = () =>{
+  const [loading, setLoading] = useState(false);
+  const [hotels, setHotels] = useState([]);
+  const [totalPages, setTotalPages] = useState(0)
+  const [page, setPage] = useState(1)
+  const [error, setError] = useState(null);
+  const fetchHotels = async () =>{
+    setLoading(true)
+    try{
+      const res = await fetch('/api/hotels')
+      const data = await res.json()
+    setHotels(data);
+    setTotalPages(Math.ceil(data.length/8));
+    }catch(err){
+      setError(err.message);
+    }finally{
+      setLoading(false)
+    }
   }
-
+  useEffect(() =>{
+    fetchHotels()
+  },[])
+if(loading){
+  <h2 className="text-4xl text-center text-blue-500">Loading...</h2>
+}
   if (error) {
     return (
       <div className="text-center py-10">
@@ -39,7 +49,7 @@ const Hotels = async({ searchParams }) =>{
           <HotelCard key={hotel._id} hotel={hotel} />
         ))}
       </div>
-      <Pagination currentPage={page} totalPages={totalPages} />
+      <Pagination currentPage={page} setPage={setPage} totalPages={totalPages} />
       <div className="mt-8">
         <Link href="/hotels/manage" className="bg-green-500 px-4 py-2 text-white rounded">
           Manage Hotels
