@@ -13,11 +13,14 @@ export default function Register() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
     })
-
+    const res = await response.json()
     if (response.ok) {
-      router.push("/auth/login")
+        if(res.acknowledged){
+            router.push("/auth/login")
+        }
     } else {
       // Handle error
+      console.log('error happen', res)
     }
   }
 
