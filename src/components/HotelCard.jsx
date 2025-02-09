@@ -28,7 +28,7 @@ export default function HotelCard({ hotel }) {
         <Link href={`/hotels/${hotel._id}`} className="block text-center bg-blue-600 text-white py-2 rounded mb-2">
           View Details
         </Link>
-        <div className="flex justify-between">
+        <div className="flex justify-between text-slate-800 py-2">
           <FacebookShareButton url={shareUrl}>
             <Facebook size={24} />
           </FacebookShareButton>
