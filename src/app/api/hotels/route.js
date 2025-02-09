@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 
 export const GET = async () =>{
     const db = await connectDB();
-    const hotelCollection = await db.collection('hotels');
+    const hotelCollection = db.collection('hotels');
     const query = {};
     const result = await hotelCollection.find(query).toArray();
     return NextResponse.json(result)

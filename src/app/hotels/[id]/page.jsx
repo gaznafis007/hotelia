@@ -7,8 +7,9 @@ import { hotels } from "@/constants/constants"
 import Button from "@/components/ui/Button"
 
  const HotelDetail = async ({ params }) =>{
-    const {id} = await params
-  const hotel = hotels.find(singleHotel => singleHotel.id == id)
+    const {id} =  params
+  const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/hotels/${id}`);
+  const hotel = await res.json()
 
   if (!hotel) {
     notFound()

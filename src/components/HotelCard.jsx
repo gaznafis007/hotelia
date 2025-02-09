@@ -5,7 +5,7 @@ import { FacebookShareButton, TwitterShareButton, WhatsappShareButton } from "re
 import { Facebook, Twitter, PhoneIcon as Whatsapp } from "lucide-react"
 
 export default function HotelCard({ hotel }) {
-  const shareUrl = `https://hotelia.com/hotels/${hotel.id}`
+  const shareUrl = `https://hotelia.com/hotels/${hotel._id}`
 
   return (
     <div className="bg-white shadow-md rounded-lg overflow-hidden">
@@ -25,7 +25,7 @@ export default function HotelCard({ hotel }) {
           <span className="text-yellow-500 mr-1">★</span>
           <span className="text-slate-800">{hotel.rating.toFixed(1)}</span>
         </div>
-        <Link href={`/hotels/${hotel.id}`} className="block text-center bg-blue-600 text-white py-2 rounded mb-2">
+        <Link href={`/hotels/${hotel._id}`} className="block text-center bg-blue-600 text-white py-2 rounded mb-2">
           View Details
         </Link>
         <div className="flex justify-between">
