@@ -1,14 +1,34 @@
 import HotelCard from "@/components/HotelCard"
 import Pagination from "@/components/Pagination"
+import Button from "@/components/ui/Button"
 import { getHotels } from "@/libs/getHotels"
 import Link from "next/link"
 
 
-
-
-export default async function Hotels({ searchParams }) {
+const Hotels = async({ searchParams }) =>{
   const page = Number.parseInt(searchParams?.page ?? 1)
-  const { hotels, totalPages } = await getHotels(page)
+  let hotels = []
+  let totalPages = 0
+  let error = null
+
+  try {
+    const result = await getHotels(page)
+    hotels = result.hotels
+    totalPages = result.totalPages
+  } catch (e) {
+    console.error("Error in Hotels page:", e)
+    error = e.message
+  }
+
+  if (error) {
+    return (
+      <div className="text-center py-10">
+        <h1 className="text-2xl font-bold text-red-600 mb-4">Error Loading Hotels</h1>
+        <p className="text-gray-600 mb-4">{error}</p>
+        <Button handler={() => window.location.reload()}>Try Again</Button>
+      </div>
+    )
+  }
 
   return (
     <div>
@@ -20,11 +40,12 @@ export default async function Hotels({ searchParams }) {
       </div>
       <Pagination currentPage={page} totalPages={totalPages} />
       <div className="mt-8">
-        <Link href="/hotels/manage" className="bg-green-600 text-white px-4 py-2 rounded">
-          Manage Hotel
+        <Link href="/hotels/manage" className="bg-green-500 px-4 py-2 text-white rounded">
+          Manage Hotels
         </Link>
       </div>
     </div>
   )
 }
 
+export default Hotels
