@@ -7,7 +7,7 @@ import Link from "next/link"
 
 
 export default async function Hotels({ searchParams }) {
-  const page = Number.parseInt(searchParams.page) || 1
+  const page = Number.parseInt(searchParams?.page) || 1
   const { hotels, totalPages } = await getHotels(page)
 
   return (
